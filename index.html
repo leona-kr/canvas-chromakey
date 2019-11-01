@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chromakey</title>
+<link rel="icon" href="data:;base64,=">
+<style>
+  body {
+    background: black;
+    color:#CCCCCC; 
+  }
+  #c2 {
+    background-image: url(./chromakey-background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  div {
+    float: left;
+    border :1px solid #444444;
+    padding: 5px;
+    margin: 5px;
+    background:#3B3B3B;
+  }
+  hr {
+    clear: both;
+	}
+	section:after{
+		clear: both;
+		content:'';
+		display: block;
+	}
+	canvas, video{
+		vertical-align: top;
+	}
+</style>
+</head>
+<body>
+	<!-- https://developer.mozilla.org/ko/docs/Web/HTML/Canvas/Manipulating_video_using_canvas -->
+	<p>
+		<button type="button" id="videoControl1">Video1 control</button>
+	</p>
+	<section>
+		<div>
+			<video id="video" src="./video.ogv"
+				preload="auto" loop="loop"
+				width="320" height="192"></video>
+		</div>
+		<div>
+			<canvas id="c1" width="320" height="192"></canvas>
+		</div>
+		<div>
+			<canvas id="c2" width="320" height="192"></canvas>
+		</div>
+	</section>
+
+  <hr/>
+
+	<!-- http://zschuessler.github.io/DeltaE/demos/de76-chroma-key/ -->
+	<section>
+		<p>
+			<button type="button" id="videoControl2">Video2 control</button>
+		</p>
+		<div>
+			<video id="video-1" src="./wtf_greenscreen_sm.mp4"
+				preload="auto" loop="loop"
+				width="320" height="180"></video>
+		</div>
+		<div>
+			<canvas id="canvas-1" width="320" height="180"></canvas>
+		</div>
+  <hr/>
+
+	<!-- http://sharon-kasper.com/sharon/chroma/chroma-test.html -->
+	<section>
+		<p>
+			<button type="button" id="videoControl3">Video3 control</button>
+		</p>
+		<div>
+			<video id="videodata" src="./PixieGreenScreen539_512kb.mp4"
+				autoplay="autoplay"
+				preload="auto" loop="loop"
+				width="320" height="180"></video>
+		</div>
+		<div>
+			<canvas id="videoscreen" width="320" height="180"></canvas>
+		</div>
+	</section>
+  
+  <script type="text/javascript" src="./1.js"></script>
+  <script type="text/javascript" src="./2.js"></script>
+  <script type="text/javascript" src="./3.js"></script>
+  <script>
+    function doEverything(){
+			// 1
+			var video1 = document.getElementById('video');
+			var control1 = document.getElementById('videoControl1');
+			control1.addEventListener('click',function(){
+				if(video1.paused){
+					video1.play();
+				} else {
+					video1.pause();
+				}
+			});
+      processor.doLoad();
+
+      // 2
+      var video2 = document.getElementById('video-1');
+			document.getElementById('videoControl2').addEventListener('click',function(){
+				if(video2.paused){
+					video2.play();
+				} else {
+					video2.pause();
+				}
+			});
+
+      // var computeInterval;
+      video2.addEventListener('play', computeFrame);
+
+      video2.addEventListener('pause', clearInterval(computeFrame));
+
+      // 3
+			var video3 = document.getElementById('videodata');
+			var control3 = document.getElementById('videoControl3');
+			control3.addEventListener('click',function(){
+				if(video3.paused){
+					video3.play();
+				} else {
+					video3.pause();
+				}
+			});
+
+      video3.addEventListener('play', function() {
+				DrawVideoOnCanvas();
+      },false);
+			video3.addEventListener('pause',clearInterval(DrawVideoOnCanvas));
+    }
+
+    window.onload = doEverything();
+    // window.onload = function(){
+
+      // navigator.mediaDevices.getUserMedia({video:true,audio:false})
+      // .then(function(stream) {
+      //   document.getElementById('video').srcObject = stream;
+      //   doEverything();
+      // })
+      // .catch(function(err) {
+      //   console.log(err);
+      // });
+    // };
+  </script>
+</body>
+</html>

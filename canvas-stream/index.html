@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebRTC Example 03 Audio Video</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/deepstream.io-client-js/2.3.0/deepstream.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.2.1/simplepeer.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+<body>
+	<div id="wrapper" class="centered">
+		<div class="video-wrapper local">
+			<video autoplay width="300" height="225" id="localvideo"></video>
+			<label>local video</label>
+		</div>
+		<div class="video-wrapper input-canvas">
+			<canvas width="300" height="225"></canvas>
+			<label>input canvas</label>
+		</div>
+		<div class="video-wrapper output-canvas">
+			<canvas width="300" height="225"></canvas>
+			<label>output canvas</label>
+		</div>
+		<div class="video-wrapper remote">
+			<video autoplay width="300" height="225"></video>
+			<label>remote stream</label>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="canvas-streams.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.App{
+  padding: 10px;
+}
+.input-container{
+  width: 400px;
+  padding: 10px 0;
+}
+.input-container input{
+  width: 100%;
+}
